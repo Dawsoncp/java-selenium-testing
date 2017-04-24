@@ -31,6 +31,7 @@ public class RunLifeCycle {
 
     @Before
 //    @PostConstruct
+//    test
     public void setUp(Scenario scenario) {
         this.scenario = scenario;
 
