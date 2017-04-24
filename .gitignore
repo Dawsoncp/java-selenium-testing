@@ -1,0 +1,17 @@
+/.idea
+/*.iml
+/*.log
+**/*.iml
+/*.ipr
+/*.iws
+/.project
+**/.project
+/.settings
+**/.settings
+/.classpath
+**/.classpath
+/target
+**/target
+*.nogit
+data/*
+*.local.overrides.yml
