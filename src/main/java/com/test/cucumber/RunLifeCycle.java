@@ -26,12 +26,12 @@ public class RunLifeCycle {
     private ActionsHelper actions;
 
 
-
 //    private static final Logger LOGGER = LoggerFactory.getLogger(RunLifeCycle.class);
 
 
     @Before
 //    @PostConstruct
+//    test
     public void setUp(Scenario scenario) {
         this.scenario = scenario;
 
