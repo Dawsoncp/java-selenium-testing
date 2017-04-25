@@ -6,3 +6,4 @@ Feature: Selenium test feature
 #    And I search for the text 'test'
     Then the available items to select in the Shop hover over drop down equal the following
     |test1  |test2|
+#    this is a test for git
