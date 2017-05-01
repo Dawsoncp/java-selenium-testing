@@ -21,4 +21,6 @@ public class BaseStep {
     //this is another comment in a commit to master
 
 //    this is a comment in test3 branch
+
+    //this is a comment in test4 branch
 }
