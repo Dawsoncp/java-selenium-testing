@@ -22,5 +22,7 @@ public class BaseStep {
 
 //    this is a comment in test3 branch
 
+    //this is a comment in test4 branch
+
 //    this is a comment in master branch
 }
