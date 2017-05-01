@@ -18,4 +18,5 @@ public class BaseStep {
 
 //another git test
 //this is a comment in a commit to master
+    //this is another comment in a commit to master
 }
