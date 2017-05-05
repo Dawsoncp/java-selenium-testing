@@ -7,3 +7,4 @@ Feature: Selenium test feature
     Then the available items to select in the Shop hover over drop down equal the following
     |test1  |test2|
 #    this is a test for git
+#  making a change in branch test4
