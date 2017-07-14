@@ -8,3 +8,5 @@ Feature: Selenium test feature
     |test1  |test2|
 #    this is a test for git
 #  making a change in branch test4
+
+#  adding this change on master branch
