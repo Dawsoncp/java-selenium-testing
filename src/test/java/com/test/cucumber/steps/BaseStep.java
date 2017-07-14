@@ -16,13 +16,5 @@ public class BaseStep {
     @Autowired
     TestPage testPage;
 
-//another git test
-//this is a comment in a commit to master
-    //this is another comment in a commit to master
-
-//    this is a comment in test3 branch
-
-    //this is a comment in test4 branch
-
-//    this is a comment in master branch
+//removing all these comments from master branch
 }
