@@ -1,4 +1,4 @@
-package com.test.cucumber;
+package com.test.cucumber.glue;
 
 import com.test.webdriver.ActionsHelper;
 import com.test.webdriver.WebDriverFactory;
@@ -6,47 +6,34 @@ import com.test.webdriver.WebDriverUtil;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.annotation.PostConstruct;
 
 @ContextConfiguration(locations = "classpath:cucumber.xml")
-@Component
 public class RunLifeCycle {
 
     private Scenario scenario;
 
     @Autowired
-    private WebDriverFactory webDriverFactory;
-    @Autowired
-    private WebDriverUtil webBot;
+    private WebDriverFactory driverFactory;
 
-    private ActionsHelper actions;
-
-
-//    private static final Logger LOGGER = LoggerFactory.getLogger(RunLifeCycle.class);
+    @PostConstruct
+    public WebDriver getDriver() {
+        return driverFactory.getDriver();
+    }
 
 
     @Before
-//    @PostConstruct
-//    test
     public void setUp(Scenario scenario) {
         this.scenario = scenario;
-
-        webDriverFactory.createDriver();
-        webBot.setWebDriver(webDriverFactory.getDriver());
-        actions = new ActionsHelper(webBot);
-        webBot.setActions(actions);
     }
 
     @After
     public void tearDown() {
-        webBot.getDriver().quit();
+        getDriver().quit();
     }
-
-
-
 
 }

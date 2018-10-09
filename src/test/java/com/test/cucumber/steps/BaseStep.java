@@ -1,20 +1,17 @@
 package com.test.cucumber.steps;
 
+import com.test.pages.HomePage;
+import com.test.session.ScenarioSession;
+import com.test.webdriver.WebDriverUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
-import com.test.pages.ShopYourPointsPage;
 
 @ContextConfiguration(locations = {"classpath:cucumber.xml"})
 public class BaseStep {
 
-    @Value("${driver}")
-    String driver;
     @Autowired
-    ShopYourPointsPage shopYourPointsPage;
+    ScenarioSession scenarioSession;
 
-    @Autowired
-    TestPage testPage;
 
-//removing all these comments from master branch
 }

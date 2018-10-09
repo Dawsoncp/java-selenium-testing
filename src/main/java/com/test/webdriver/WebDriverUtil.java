@@ -4,13 +4,12 @@ package com.test.webdriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,30 +22,49 @@ public class WebDriverUtil {
     @Value("${baseUrl}")
     private String baseUrl;
 
-    private WebDriver driver;
+    @Autowired
+    private WebDriverFactory webDriverFactory;
 
-//    todo - this ActionsHelper adds an infinte loop as it references WebDriverUtil in it too. Could probably just move all the ActionsHelper methods into this class if need be
-    private ActionsHelper actions;
-    private static final int SECONDS = 20;
+    private String driverName;
 
 
+
+//  This post construct loads the driver after it being autowired into the RunLifeCycle class
+    @PostConstruct
+    public void init(){
+        getDriver();
+    }
 
     public WebDriver getDriver(){
-        return driver;
+        return webDriverFactory.getDriver();
     }
 
-    public ActionsHelper getActions() {
-        return actions;
+    public void quit() {
+        webDriverFactory.quitDriver();
     }
 
-    public void setActions(ActionsHelper actions) {
-        this.actions = actions;
+
+//    ++++++++++++++++++++++++++++++++++++++++++++
+//    webelement interactions
+
+    public WebElement findElement(By locator) {
+//        (new WebDriverWait(getDriver(), SECONDS)).until(ExpectedConditions.presenceOfElementLocated(what));
+        return getDriver().findElement(locator);
     }
 
-    public void setWebDriver(WebDriver webDriver){
-        this.driver = webDriver;
+    public void click(By what) {
+        findElement(what).click();
     }
 
+    public void enterText(By locator, String text){
+        findElement(locator).clear();
+        findElement(locator).click();
+        findElement(locator).sendKeys(text);
+    }
+
+    public String getText(By what) {
+        return findElement(what).getText();
+    }
 
     public String selectRandomOption(By optionElement) {
         List<WebElement> options = getSelectOptions(optionElement);
@@ -71,38 +89,15 @@ public class WebDriverUtil {
         return new Select(findElement(element)).getOptions();
     }
 
-    public WebElement findElement(By what) {
-
-        (new WebDriverWait(getDriver(), SECONDS)).until(ExpectedConditions.presenceOfElementLocated(what));
-        return driver.findElement(what);
-    }
-
     public void goToPage(String path){
 
-            try {
-                URL baseUrl = new URL(this.baseUrl);
-                URL url = new URL(baseUrl, path);
-                driver.navigate().to(url);
-            } catch (MalformedURLException e){
-                e.printStackTrace();
-            }
+        try {
+            URL baseUrl = new URL(this.baseUrl);
+            URL url = new URL(baseUrl, path);
+            getDriver().navigate().to(url);
+        } catch (MalformedURLException e){
+            e.printStackTrace();
+        }
     }
 
-    public WebElement element(By what) {
-        return driver.findElement(what);
-    }
-
-    public void click(By what) {
-        findElement(what).click();
-    }
-
-    public void enterText(By what, String text){
-        findElement(what).click();
-        findElement(what).sendKeys(text);
-    }
-
-    public void hover(By what) {
-
-
-    }
 }

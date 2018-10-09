@@ -24,7 +24,7 @@
         <!--</property>-->
     <!--</bean>-->
 
-    <!--<bean class="com.test.cucumber.steps.TestPage"/>-->
+    <bean class="com.test.cucumber.steps.HomePageSteps"/>
     <!--<bean class="cms.content.pages.ServerLocations"/>-->
 
     <beans profile="default">
